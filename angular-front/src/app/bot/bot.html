@@ -1,0 +1,23 @@
+<div class="card">
+  <div class="card-body">
+    <input
+      type="text"
+      class="form-control d-inline"
+      style="width: 80%;"
+      [(ngModel)]="query"
+      (keyup.enter)="askAgent()"
+      placeholder="Posez votre question (ex: liste des clients)..."
+    />
+    <button class="btn btn-primary ms-2" (click)="askAgent()">
+      <i class="bi bi-search"></i>
+    </button>
+  </div>
+</div>
+
+@if (response$ | async; as resp) {
+<div class="card mt-3">
+  <div class="card-body">
+    <markdown [data]="resp"></markdown>
+  </div>
+</div>
+}

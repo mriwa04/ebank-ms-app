@@ -1,0 +1,48 @@
+<div class="container mt-3">
+  @if (accountsState$ | async; as state) {
+  @if (state.status === RequestStatus.ERROR) {
+  <div class="alert alert-danger">
+    {{ state.errorMessage }}
+  </div>
+  } @else if (state.status === RequestStatus.SUCCESS && state.accounts) {
+  <div class="card">
+    <div class="card-header d-flex justify-content-between align-items-center">
+      <span><i class="bi bi-wallet2 me-2"></i>Accounts</span>
+      <span class="badge bg-secondary">{{ state.accounts.length }}</span>
+    </div>
+    <div class="card-body">
+      <table class="table table-striped">
+        <thead class="table-dark">
+        <tr>
+          <th>ID</th>
+          <th>Type</th>
+          <th>Balance</th>
+          <th>Customer ID</th>
+          <th>Created At</th>
+        </tr>
+        </thead>
+        <tbody>
+        @for (acc of state.accounts; track acc.id) {
+        <tr>
+          <td>{{ acc.id }}</td>
+          <td>
+                    <span
+                      class="badge"
+                      [class.bg-success]="acc.type === 'SAVING-ACCOUNT'"
+                      [class.bg-primary]="acc.type !== 'SAVING-ACCOUNT'"
+                    >
+                      {{ acc.type }}
+                    </span>
+          </td>
+          <td>{{ acc.balance | number:'1.2-2' }}</td>
+          <td>{{ acc.customerId }}</td>
+          <td>{{ acc.createdAt | date:'dd/MM/yyyy HH:mm' }}</td>
+        </tr>
+        }
+        </tbody>
+      </table>
+    </div>
+  </div>
+  }
+  }
+</div>

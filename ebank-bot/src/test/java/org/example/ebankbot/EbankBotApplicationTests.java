@@ -1,10 +1,10 @@
-package org.example.ebankservices;
+package org.example.ebankbot;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class EbankServicesApplicationTests {
+class EbankBotApplicationTests {
 
     @Test
     void contextLoads() {
